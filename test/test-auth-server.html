@@ -74,7 +74,7 @@
             const events = document.getElementById('events');
             const getCalendarEvents = 'https://hymncvcewd.execute-api.us-east-2.amazonaws.com/dev/api/get-events'
 
-            getCalendarEvents.onclick = function () {
+            getEvents.onclick = function () {
                 const { access_token } = JSON.parse(accessTokenElement.innerText);
                 const eventRequest = getCalendarEvents + "/" + access_token;
                 fetch(eventRequest)
