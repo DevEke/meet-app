@@ -17,7 +17,7 @@ const credentials = {
 
 const { client_secret, client_id, redirect_uris, calendar_id} = credentials;
 
-const oAuth2Client = new google.auth.OAuth2(
+const oAuth2Client = new OAuth2(
   client_id,
   client_secret,
   redirect_uris[0]
@@ -40,7 +40,7 @@ module.exports.getAuthURL = async () => {
   };
 }
   module.exports.getAccessToken = async (event) => {
-    const oAuth2Client = new google.auth.OAuth2(
+    const oAuth2Client = new OAuth2(
       client_id,
       client_secret,
       redirect_uris[0]
@@ -67,7 +67,7 @@ module.exports.getAuthURL = async () => {
   };
 
   module.exports.getCalendarEvents = async (event) => {
-    const oAuth2Client = new google.auth.OAuth2(
+    const oAuth2Client = new OAuth2(
       client_id,
       client_secret,
       redirect_uris[0]
@@ -102,4 +102,3 @@ module.exports.getAuthURL = async () => {
       
     })
   };
-  
