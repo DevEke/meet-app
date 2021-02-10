@@ -56,6 +56,9 @@ module.exports.getAuthURL = async () => {
     }).then((token) => {
       return {
         statusCode: 200,
+        headers: {
+          'Access-Control-Allow-Origin': '*'
+        },
         body: JSON.stringify(token)
       };
     }).catch((error) => {
@@ -91,6 +94,9 @@ module.exports.getAuthURL = async () => {
         }).then((results) => {
         return {
           statusCode: 200,
+          headers: {
+            'Access-Control-Allow-Origin': '*'
+          },
           body: JSON.stringify({events: results.data.items})
         };
       }).catch((error) => {
