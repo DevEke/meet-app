@@ -10,7 +10,7 @@ const credentials = {
   calendar_id: process.env.CALENDAR_ID,
   auth_uri: 'https://accounts.google.com/o/oauth2/auth',
   token_uri: 'https://oauth2.googleapis.com/token',
-  auth_provider_x509_cery_url: 'https://www.googleapis.com/oauth2/v1/certs',
+  auth_provider_x509_cert_url: 'https://www.googleapis.com/oauth2/v1/certs',
   redirect_uris: ['https://deveke.github.io/meet-app'],
   javascript_origins: ['https://deveke.github.io', 'http://localhost:3000'] 
 };
@@ -32,13 +32,15 @@ module.exports.getAuthURL = async () => {
   return {
     statusCode: 200,
     headers: {
-      'Access-Control-Allow-Origin': '*'
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Credentials': true
     },
     body: JSON.stringify({
       authUrl: authUrl
     })
   };
-}
+};
+
   module.exports.getAccessToken = async (event) => {
     const oAuth2Client = new OAuth2(
       client_id,
@@ -57,15 +59,18 @@ module.exports.getAuthURL = async () => {
       return {
         statusCode: 200,
         headers: {
-          'Access-Control-Allow-Origin': '*'
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true
         },
         body: JSON.stringify(token)
       };
     }).catch((error) => {
+      console.error(error);
       return {
         statusCode: 500,
         headers: {
-          'Access-Control-Allow-Origin': '*'
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': true
         },
         body: JSON.stringify(error),
       }
@@ -86,6 +91,7 @@ module.exports.getAuthURL = async () => {
           calendarId: calendar_id,
           auth: oAuth2Client,
           timeMin: new Date().toISOString(),
+          maxResults: 32,
           singleEvents: true,
           orderBy: "startTime"
         }, (error, response) => {
@@ -94,23 +100,25 @@ module.exports.getAuthURL = async () => {
           } else {
             resolve(response)
           }
-        }).then((results) => {
+        }).then((response) => {
         return {
           statusCode: 200,
           headers: {
-            'Access-Control-Allow-Origin': '*'
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Credentials': true
           },
-          body: JSON.stringify({events: results.data.items})
+          body: JSON.stringify({events: response.data.items})
         };
       }).catch((error) => {
+        console.error(error);
         return {
           statusCode: 500,
           headers: {
-            'Access-Control-Allow-Origin': '*'
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Credentials': true
           },
           body: JSON.stringify(error)
         }
       })
-      
     })
   };
