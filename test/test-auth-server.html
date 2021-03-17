@@ -59,11 +59,11 @@
             const getToken = 'https://hymncvcewd.execute-api.us-east-2.amazonaws.com/dev/api/token';
 
             getAccessToken.onclick = function () {
-                let code = codeValue.value;
+                const code = codeValue.value.replace('/', '%2F');
 
-                if (decodeURIComponent(code) === code) {
-                    code = encodeURIComponent(codeValue.value);
-                }
+                // if (decodeURIComponent(code) === code) {
+                //     code = encodeURIComponent(codeValue.value);
+                // }
                 const getTokenRequest = getToken + "/" + code;
                 fetch(getTokenRequest)
                     .then(function (response) {
