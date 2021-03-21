@@ -84,7 +84,7 @@ module.exports.getAuthURL = async () => {
       redirect_uris[0]
     );
     const access_token = decodeURIComponent(`${event.pathParameters.access_token}`);
-    oAuth2Client.setCredentials({access_token});
+    oAuth2Client.setCredentials({ access_token });
     return new Promise((resolve, reject) => {
       calendar.events.list(
         {
@@ -95,12 +95,14 @@ module.exports.getAuthURL = async () => {
           singleEvents: true,
           orderBy: "startTime"
         }, (error, response) => {
-          if (error) {
-            reject(error);
-          } else {
-            resolve(response)
+            if (error) {
+              reject(error);
+            } else {
+              resolve(response)
+            }
           }
-        }).then((response) => {
+        );
+      }).then((response) => {
         return {
           statusCode: 200,
           headers: {
@@ -118,7 +120,6 @@ module.exports.getAuthURL = async () => {
             'Access-Control-Allow-Credentials': true
           },
           body: JSON.stringify(error)
-        }
-      })
-    })
-  };
+        };
+      });
+    };
