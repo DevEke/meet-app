@@ -17,7 +17,7 @@ function Login() {
                     src={google}
                     alt="google sign-in" />
                 <a 
-                    href="https://hymncvcewd.execute-api.us-east-2.amazonaws.com/dev/api/get-auth-url"
+                    href="https://accounts.google.com/o/oauth2/v2/auth?access_type=offline&scope=https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcalendar.readonly&response_type=code&client_id=15987595925-ec16dg09j77ve8uo5q72i8012ii9eg5l.apps.googleusercontent.com&redirect_uri=https%3A%2F%2Fdeveke.github.io%2Fmeet-app%2F"
                     rel="nofollow noopener">Sign In with Google
                 </a>
             </div>

@@ -7,7 +7,6 @@ import './App.scss';
 import './Media-Queries.scss';
 import { getEvents, extractLocations, checkToken } from './api';
 import logo from './img/logo-on-dark.svg';
-import { validMethods } from 'workbox-routing/utils/constants';
 
 class App extends Component {
   constructor() {
@@ -22,15 +21,15 @@ class App extends Component {
  
 
   async componentDidMount() {
-    this.mounted = true;
-    getEvents().then((events) => {
-      if (this.mounted) {
-        this.setState({
-          events,
-          locations: extractLocations(events)
-        })
-      }
-    });
+    // this.mounted = true;
+    // getEvents().then((events) => {
+    //   if (this.mounted) {
+    //     this.setState({
+    //       events,
+    //       locations: extractLocations(events)
+    //     })
+    //   }
+    // });
     const accessToken = localStorage.getItem('access_token');
     const validToken = accessToken !== null ? await checkToken(accessToken) : false;
     this.setState({
