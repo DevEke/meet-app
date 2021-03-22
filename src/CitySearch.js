@@ -22,20 +22,22 @@ class CitySearch extends Component {
         this.setState({
             query: suggestion
         })
+        this.props.updateEvents(suggestion);
     }
 
     render() {
         const { query, suggestions } = this.state;
-        const { locations } = this.props;
+        const { locations, updateEvents } = this.props;
         return (
             <div className="city-search__container">
                 <input 
                     onChange={this.handleInputChanged} 
                     type="text" 
-                    className="city-search__input" 
+                    className="city-search__input"
+                    placeholder="Search for a City"
                     value={query}>
                 </input>
-                <ul className="city-search__suggestions">
+                {query ? <ul className="city-search__suggestions">
                     {suggestions.map((suggestion) => {
                         return (
                             <li 
@@ -45,10 +47,13 @@ class CitySearch extends Component {
                             </li>
                         )
                     })}
-                    <li key="all"  className="city-suggestion">
+                    <li 
+                        key="all"  
+                        className="city-suggestion"
+                        onClick={() => this.handleItemClicked('all')}>
                         <b>See All Cities</b>
                     </li>
-                </ul>
+                </ul> : null }
             </div>
         )
     }
