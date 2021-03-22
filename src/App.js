@@ -22,15 +22,15 @@ class App extends Component {
  
 
   async componentDidMount() {
-    // this.mounted = true;
-    // getEvents().then((events) => {
-    //   if (this.mounted) {
-    //     this.setState({
-    //       events,
-    //       locations: extractLocations(events)
-    //     })
-    //   }
-    // });
+    this.mounted = true;
+    getEvents().then((events) => {
+      if (this.mounted) {
+        this.setState({
+          events,
+          locations: extractLocations(events)
+        })
+      }
+    });
     const accessToken = localStorage.getItem('access_token');
     const validToken = accessToken !== null ? await checkToken(accessToken) : false;
     this.setState({
