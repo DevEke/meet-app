@@ -9,17 +9,18 @@ export const extractLocations = (events) => {
     return locations;
 }
 
-const checkToken = async (accessToken) => {
+export const checkToken = async (accessToken) => {
     const result = await fetch(
         `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
     )
     .then((res) => res.json())
     .catch((error) => error.json());
 
-    return result;
+    return result.error ? false : true ;
 }
 
 const getToken = async (code) => {
+    removeQuery();
     const encodeCode = encodeURIComponent(code);
     const { access_token } = await fetch(
         'https://hymncvcewd.execute-api.us-east-2.amazonaws.com/dev/api/token/' + encodeCode
@@ -69,9 +70,9 @@ export const getEvents = async () => {
 }
 
 export const getAccessToken = async () => {
-    const accessToken = localStorage.getItem('access_token');
+    const accessToken = await localStorage.getItem('access_token');
     const tokenCheck = accessToken && (await checkToken(accessToken));
-    if(!accessToken || tokenCheck.error) {
+    if(!accessToken || !tokenCheck) {
         await localStorage.removeItem('access-token');
         const searchParams = new URLSearchParams(window.location.search);
         const code = await searchParams.get('code');

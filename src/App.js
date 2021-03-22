@@ -2,8 +2,12 @@ import React, { Component } from 'react';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
+import Login from './Login';
 import './App.scss';
-import { getEvents, extractLocations } from './api';
+import './Media-Queries.scss';
+import { getEvents, extractLocations, checkToken } from './api';
+import logo from './img/logo-on-dark.svg';
+import { validMethods } from 'workbox-routing/utils/constants';
 
 class App extends Component {
   constructor() {
@@ -11,21 +15,37 @@ class App extends Component {
 
     this.state = {
       events: [],
-      locations: []
+      locations: [],
+      tokenCheck: false
     }
   }
  
 
-  componentDidMount() {
-    this.mounted = true;
-    getEvents().then((events) => {
-      if (this.mounted) {
-        this.setState({
-          events,
-          locations: extractLocations(events)
-        })
-      }
+  async componentDidMount() {
+    // this.mounted = true;
+    // getEvents().then((events) => {
+    //   if (this.mounted) {
+    //     this.setState({
+    //       events,
+    //       locations: extractLocations(events)
+    //     })
+    //   }
+    // });
+    const accessToken = localStorage.getItem('access_token');
+    const validToken = accessToken !== null ? await checkToken(accessToken) : false;
+    this.setState({
+      tokenCheck: validToken
     });
+    if ( validToken === true ) {
+      this.updateEvents();
+    }
+    const searchParams = new URLSearchParams(window.location.search);
+    const code = searchParams.get('code');
+    this.mounted = true;
+    if ( code && this.mounted === true && validToken === false) {
+      this.setState({ tokenCheck: true});
+      this.updateEvents();
+    }
   }
 
   updateEvents = (location) => {
@@ -44,14 +64,19 @@ class App extends Component {
   }
 
   render() {
-    const { events, locations } = this.state;
-    return (
+    const { events, locations, tokenCheck } = this.state;
+    return tokenCheck === false ? (
+        <Login/>
+    ) : (
       <div className="App">
         <div className="app__navigation-bar">
-          <h1>MeetUp</h1>
-          <CitySearch locations={locations} updateEvents={this.updateEvents}/>
-          <NumberOfEvents />
-        </div>
+            <img
+              className="app__logo" 
+              src={logo} 
+              alt="meet up logo"/>
+            <CitySearch locations={locations} updateEvents={this.updateEvents}/>
+            <NumberOfEvents />
+          </div>
         <EventList events={events} />
       </div>
     )

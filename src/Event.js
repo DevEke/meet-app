@@ -27,7 +27,7 @@ class Event extends Component {
                     <div className="event-data__flex">
                         <h1>{event.summary}</h1>
                         <p>{new Date(event.start.dateTime).toLocaleDateString(
-                            'en-gb', { year: 'numeric', month: 'long', day: 'numeric', timeZone: 'utc'})}</p>
+                            'en-gb', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'utc'})}</p>
                     </div>
                     
                     <p>{event.location}</p>
