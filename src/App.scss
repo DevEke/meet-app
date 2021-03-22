@@ -164,6 +164,8 @@ body {
   border-radius: 5px;
   transition: background-color 0.3s;
   position: relative;
+  height: auto;
+  transition: height 0.3s;
 
   .event-data__collapsed {
     margin-bottom: 16px;
