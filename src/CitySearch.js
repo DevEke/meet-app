@@ -38,7 +38,8 @@ class CitySearch extends Component {
                     className="city-search__input"
                     placeholder="Search for a City"
                     value={query}
-                    onFocus={() => this.setState({showSuggestions: true})}>
+                    onFocus={() => this.setState({showSuggestions: true})}
+                    >
                 </input>
                 <ul 
                     className="city-search__suggestions"

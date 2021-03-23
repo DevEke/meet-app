@@ -6,7 +6,7 @@ import Login from './Login';
 import './App.scss';
 import './Media-Queries.scss';
 import { getEvents, extractLocations, checkToken } from './api';
-import logo from './img/logo-on-dark.svg';
+import logo from './img/full-logo-on-dark.svg';
 
 class App extends Component {
   constructor() {
@@ -15,36 +15,36 @@ class App extends Component {
     this.state = {
       events: [],
       locations: [],
-      tokenCheck: false
+      // tokenCheck: false
     }
   }
  
 
-  async componentDidMount() {
-    // this.mounted = true;
-    // getEvents().then((events) => {
-    //   if (this.mounted) {
-    //     this.setState({
-    //       events,
-    //       locations: extractLocations(events)
-    //     })
-    //   }
-    // });
-    const accessToken = localStorage.getItem('access_token');
-    const validToken = accessToken !== null ? await checkToken(accessToken) : false;
-    this.setState({
-      tokenCheck: validToken
-    });
-    if ( validToken === true ) {
-      this.updateEvents();
-    }
-    const searchParams = new URLSearchParams(window.location.search);
-    const code = searchParams.get('code');
+  componentDidMount() {
     this.mounted = true;
-    if ( code && this.mounted === true && validToken === false) {
-      this.setState({ tokenCheck: true});
-      this.updateEvents();
-    }
+    getEvents().then((events) => {
+      if (this.mounted) {
+        this.setState({
+          events,
+          locations: extractLocations(events)
+        })
+      }
+    });
+    // const accessToken = localStorage.getItem('access_token');
+    // const validToken = accessToken !== null ? await checkToken(accessToken) : false;
+    // this.setState({
+    //   tokenCheck: validToken
+    // });
+    // if ( validToken === true ) {
+    //   this.updateEvents();
+    // }
+    // const searchParams = new URLSearchParams(window.location.search);
+    // const code = searchParams.get('code');
+    // this.mounted = true;
+    // if ( code && this.mounted === true && validToken === false) {
+    //   this.setState({ tokenCheck: true });
+    //   this.updateEvents();
+    // }
   }
 
   updateEvents = (location) => {
@@ -63,10 +63,8 @@ class App extends Component {
   }
 
   render() {
-    const { events, locations, tokenCheck } = this.state;
-    return tokenCheck === false ? (
-        <Login/>
-    ) : (
+    const { events, locations } = this.state;
+    return (
       <div className="App">
         <div className="app__navigation-bar">
             <img
