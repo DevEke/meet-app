@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/meet-app/static/css/main.a91d8ff6.chunk.css",
-    "main.js": "/meet-app/static/js/main.090c54cd.chunk.js",
-    "main.js.map": "/meet-app/static/js/main.090c54cd.chunk.js.map",
+    "main.js": "/meet-app/static/js/main.3d668310.chunk.js",
+    "main.js.map": "/meet-app/static/js/main.3d668310.chunk.js.map",
     "runtime-main.js": "/meet-app/static/js/runtime-main.a9819f03.js",
     "runtime-main.js.map": "/meet-app/static/js/runtime-main.a9819f03.js.map",
     "static/js/2.fd2b06a1.chunk.js": "/meet-app/static/js/2.fd2b06a1.chunk.js",
@@ -14,6 +14,7 @@
     "service-worker.js.map": "/meet-app/service-worker.js.map",
     "static/css/main.a91d8ff6.chunk.css.map": "/meet-app/static/css/main.a91d8ff6.chunk.css.map",
     "static/js/2.fd2b06a1.chunk.js.LICENSE.txt": "/meet-app/static/js/2.fd2b06a1.chunk.js.LICENSE.txt",
+    "static/media/full-logo-on-dark.9df81d18.svg": "/meet-app/static/media/full-logo-on-dark.9df81d18.svg",
     "static/media/google-icon.663d34b9.svg": "/meet-app/static/media/google-icon.663d34b9.svg",
     "static/media/logo-on-dark.d1e48978.svg": "/meet-app/static/media/logo-on-dark.d1e48978.svg"
   },
@@ -21,6 +22,6 @@
     "static/js/runtime-main.a9819f03.js",
     "static/js/2.fd2b06a1.chunk.js",
     "static/css/main.a91d8ff6.chunk.css",
-    "static/js/main.090c54cd.chunk.js"
+    "static/js/main.3d668310.chunk.js"
   ]
 }
