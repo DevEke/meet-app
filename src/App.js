@@ -58,7 +58,7 @@ class App extends Component {
     })
   }
 
-  componentWillMount() {
+  componentWillUnmount() {
     this.mounted = false;
   }
 
@@ -74,7 +74,7 @@ class App extends Component {
             <CitySearch locations={locations} updateEvents={this.updateEvents}/>
             <NumberOfEvents />
           </div>
-        <EventList events={events} />
+        <EventList events={events}/>
       </div>
     )
   }
