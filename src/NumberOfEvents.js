@@ -6,12 +6,13 @@ class NumberOfEvents extends Component {
         eventCount: 32
     }
 
-    handleCountChanged = (event) => {
+    handleCountChanged = async (event) => {
+        const { updateEvents } = this.props;
         const value = event.target.value;
         this.setState({
             eventCount: value
         })
-        this.props.updateEvents(null, value);
+        await updateEvents(null, value);
     }
 
     render() {

@@ -82,15 +82,16 @@ describe('specify a number of events', () => {
         page = await browser.newPage();
         await page.goto('http://localhost:3000/');
         await page.waitForSelector('.number-of-events__input');
+        await page.waitForSelector('.event-list');
     });
     afterAll(async () => {
         browser.close();
     });
     test('When the user hasn\'t sepcified a number of events, 32 will be the default number', async () => {
-        expect(await page.$eval('#event-number', el => el.value)).toBe("32");
+        expect(await page.$eval('#event-number', el => el.value)).toEqual("32");
     });
     test('A user can change the number of events they want to see', async () => {
-        await page.$eval('#event-number', el => el.value = 15);
-        expect(await page.$eval('#event-number', el => el.value)).toBe("15");
+        await page.$eval('#event-number', el => el.value = 1);
+        expect(await page.$eval('#event-number', el => el.value)).toEqual("1");
     })
 })

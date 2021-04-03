@@ -31,11 +31,11 @@ defineFeature(feature, test => {
             expect(AppWrapper.find(EventList)).toHaveLength(1);
         });
         when('the user selects a number from the event number input', () => {
-            let eventObj = { target: { value: 15 }}
+            let eventObj = { target: { value: 1 }}
             NumberOfEventsWrapper.find('.number-of-events__input').simulate('change', eventObj);
         });
         then('the number of events will change to reflect the number selected by the user.', () => {
-            expect(NumberOfEventsWrapper.state('eventCount')).toBe(15)
+            expect(NumberOfEventsWrapper.state('eventCount')).toBe(1)
         });
     });
 })
