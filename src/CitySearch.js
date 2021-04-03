@@ -48,7 +48,7 @@ class CitySearch extends Component {
                         return (
                             <li 
                                 key={suggestion} 
-                                className="city-suggestion suggestion"
+                                className="city-suggestion"
                                 onClick={() => this.handleItemClicked(suggestion)}
                                 value={suggestion}
                                 >{suggestion}

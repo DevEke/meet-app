@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
-import Login from './Login';
+// import Login from './Login';
 import './App.scss';
 import './Media-Queries.scss';
 import { getEvents, extractLocations, checkToken } from './api';
@@ -15,6 +15,8 @@ class App extends Component {
     this.state = {
       events: [],
       locations: [],
+      eventNumber: 32,
+      currentLocation: 'all'
       // tokenCheck: false
     }
   }
@@ -23,13 +25,16 @@ class App extends Component {
   componentDidMount() {
     this.mounted = true;
     getEvents().then((events) => {
+      const { eventNumber } = this.state;
       if (this.mounted) {
+        const filteredEvents = events.slice(0, eventNumber);
         this.setState({
-          events,
+          events: filteredEvents,
           locations: extractLocations(events)
         })
       }
     });
+
     // const accessToken = localStorage.getItem('access_token');
     // const validToken = accessToken !== null ? await checkToken(accessToken) : false;
     // this.setState({
@@ -47,15 +52,31 @@ class App extends Component {
     // }
   }
 
-  updateEvents = (location) => {
-    getEvents().then((events) => {
-      const locationEvents = (location === 'all') ?
-      events :
-      events.filter((event) => event.location === location);
-      this.setState({
-        events: locationEvents
-      })
-    })
+  updateEvents = (location, eventCount) => {
+    const { currentLocation, eventNumber } = this.state;
+    if (location) {
+      getEvents().then((events) => {
+        const locationEvents = (location === 'all') 
+        ? events 
+        : events.filter((event) => event.location === location);
+        const filteredEvents = locationEvents.slice(0, eventNumber);
+        this.setState({
+          events: filteredEvents,
+          currentLocation: location
+        });
+      });
+    } else {
+      getEvents().then((events) => {
+        const locationEvents = (currentLocation === 'all') 
+        ? events 
+        : events.filter((event) => event.location === currentLocation);
+        const filteredEvents = locationEvents.slice(0, eventCount);
+        this.setState({
+          events: filteredEvents,
+          eventNumber: eventCount
+        });
+      });
+    }
   }
 
   componentWillUnmount() {
@@ -63,7 +84,7 @@ class App extends Component {
   }
 
   render() {
-    const { events, locations } = this.state;
+    const { events, locations, eventNumber } = this.state;
     return (
       <div className="App">
         <div className="app__navigation-bar">
@@ -72,7 +93,7 @@ class App extends Component {
               src={logo} 
               alt="meet up logo"/>
             <CitySearch locations={locations} updateEvents={this.updateEvents}/>
-            <NumberOfEvents />
+            <NumberOfEvents eventNumber={eventNumber} updateEvents={this.updateEvents} />
           </div>
         <EventList events={events}/>
       </div>
