@@ -3,6 +3,10 @@ $accent-color: #020E2E;
 $secondary-color: #F6F6F6;;
 $link-color: #E8D190;
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: 'Jost', sans-serif;
