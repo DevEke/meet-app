@@ -45,7 +45,7 @@ describe('filter a list of events', () => {
 describe('show/hide an event details', () => {
     let browser, page;
     beforeAll(async () => {
-        jest.setTimeout(30000);
+        jest.setTimeout(300000);
         browser = await puppeteer.launch();
         page = await browser.newPage();
         await page.goto('http://localhost:3000/');
