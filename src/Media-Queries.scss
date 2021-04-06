@@ -7,19 +7,8 @@
 }
 
 @media only screen and (max-width: 768px) {
-    .login {
-        .login__logo {
-            height: 50px;
-            margin-bottom: 16px;
-        }
-
-        h1 {
-            width: 60%;
-            font-size: 24px;
-        }
-        h4 {
-            width: 60%;
-        }
+    .app__navigation-bar {
+        padding: 15px 40px;
     }
 
 
@@ -28,7 +17,7 @@
 @media only screen and (max-width: 425px) {
 
     .app__navigation-bar {
-        padding: 15px 40px;
+        padding: 15px 20px;
         flex-direction: column;
 
         .app__logo {
@@ -37,10 +26,10 @@
     }
 
     .city-search__container {
-        width: 70%;
+        width: 100%;
         
         .city-search__input {
-            margin-bottom: 16px;
+            margin-bottom: 0;
         }
     }
 
@@ -57,8 +46,16 @@
 
         .event-data__collapsed {
             .event-data__flex {
+
+                .date__container {
+          
+                    .date_icon {
+                      margin-right: 8px;
+                    }
+                  }
+
                 h1 {
-                    font-size: 18px;
+                    font-size: 20px;
                     width: 65%;
                     line-height: 20px;
                     margin-bottom: 8px;
@@ -69,6 +66,13 @@
                     font-size: 12px;
                 }
             }
+
+            .location__container {
+                .location_icon {
+                  margin-right: 8px;
+                }
+              }
+
             p {
                 width: 50%;
                 font-size: 12px;

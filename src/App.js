@@ -88,13 +88,11 @@ class App extends Component {
     return (
       <div className="App">
         <div className="app__navigation-bar">
-            <img
-              className="app__logo" 
-              src={logo} 
-              alt="meet up logo"/>
+            <h1 className="logo_text"><span style={{color: '#E8D190'}}>MEET</span> UP</h1>
             <CitySearch locations={locations} updateEvents={this.updateEvents}/>
             <NumberOfEvents eventNumber={eventNumber} updateEvents={this.updateEvents} />
           </div>
+          
         <EventList events={events}/>
       </div>
     )

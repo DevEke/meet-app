@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import location from './img/location-icon.svg';
+import calendar from './img/calendar-icon.svg';
+import up from './img/up-icon.svg';
+import down from './img/down-icon.svg';
+import info from './img/info-icon.svg';
 
 class Event extends Component {
 
@@ -26,23 +31,32 @@ class Event extends Component {
                 <div className="event-data__collapsed">
                     <div className="event-data__flex">
                         <h1>{event.summary}</h1>
-                        <p>{new Date(event.start.dateTime).toLocaleDateString(
-                            'en-gb', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'utc'})}
-                        </p>
+                        <div className="date__container">
+                            <img className="date_icon" src={calendar} alt="calendar icon"/>
+                            <p>{new Date(event.start.dateTime).toLocaleDateString(
+                                'en-gb', { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'utc'})}
+                            </p>
+                        </div>
+                    </div>
+                    <div className="location__container">
+                        <img className="location_icon" src={location} alt="location icon"/>
+                        <p>{event.location}</p>
                     </div>
                     
-                    <p>{event.location}</p>
                 </div>
                 { isExpanded ? <div className="event-data__expanded">
-                    <h2>About</h2>
+                    <div className="line"/>
                     <p>{event.description}</p>
                     <a href={event.htmlLink} target="_blank" rel="noreferrer">See details on Google Calender</a>
                 </div> : null}
-                <button 
-                    className="event-item__details-button" 
-                    onClick={this.handleExpandEvent}>
-                        {isExpanded ? "Hide Details" : "Show Details"}
-                </button>
+                <div className="more-less__button">
+                    <img src={isExpanded ? up : down} alt="caret"/>
+                    <button 
+                        className="event-item__details-button" 
+                        onClick={this.handleExpandEvent}>
+                            {isExpanded ? "Less" : "More"}
+                    </button>
+                </div>
             </div>
         )
     }
