@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { ErrorAlert } from './Alert';
 import filter from './img/filter-icon.svg';
+import up from './img/up2-icon.svg';
+import down from './img/down2-icon.svg';
 
 class NumberOfEvents extends Component {
 
@@ -41,6 +43,10 @@ class NumberOfEvents extends Component {
                 ? <ErrorAlert text={this.state.infoText} close={this.closeAlert} />
                 : null }
                 <img className="filter_icon" src={filter} alt="filter icon"/>
+                <div className="custom-spinners">
+                    <img className="arrow" src={up} alt="up"/>
+                    <img className="arrow" src={down} alt="down"/>
+                </div>
                 <input
                     className="number-of-events__input"
                     type="number"

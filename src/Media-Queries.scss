@@ -19,6 +19,15 @@
         padding: 15px 40px;
 
     }
+    .event-number__container {
+        .custom-spinners {
+            display: none;
+        }
+
+        .number-of-events__input {
+            padding: 16px 16px 16px 48px;
+        }
+    }
 
     .event-list__title {
         margin-left: 40px;
@@ -83,7 +92,7 @@
                 h1 {
                     font-size: 20px;
                     width: 65%;
-                    line-height: 20px;
+                    line-height: 24px;
                     margin-bottom: 8px;
                 }
                 p {
@@ -118,3 +127,12 @@
     }
     
 }
+
+@media (hover: none) {
+    .event-number__container {
+        .custom-spinners {
+            display: none;
+        }
+    }
+
+  }
