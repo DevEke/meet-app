@@ -372,10 +372,14 @@ body {
   color: $secondary-color;
   padding: 20px 24px;
   margin-bottom: 8px;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, height 0.3s;
   position: relative;
   height: auto;
-  transition: height 0.3s;
+  cursor: pointer;
+    &:hover,
+    &:focus {
+      background-color: #181818;
+    }
 
   .event-data__collapsed {
     margin-bottom: 16px;
