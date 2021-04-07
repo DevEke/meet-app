@@ -27,6 +27,10 @@ class EventList extends Component {
         }
     }
 
+    componentDidMount() {
+        this.checkConnection();
+    }
+
     render() {
         const { events } = this.props;
 
