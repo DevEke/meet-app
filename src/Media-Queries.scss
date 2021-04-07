@@ -25,7 +25,15 @@
         }
 
         .number-of-events__input {
-            padding: 16px 16px 16px 48px;
+            padding: 16px 0px 16px 48px;
+        }
+
+        .event-data__collapsed {
+            .event-data__flex {
+                h1 {
+                    line-height: 18px;
+                }
+            }
         }
     }
 
