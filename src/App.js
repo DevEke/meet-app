@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
-// import Login from './Login';
+import { WarningAlert } from './Alert';
 import './App.scss';
 import './Media-Queries.scss';
 import { getEvents, extractLocations, checkToken } from './api';
-import logo from './img/full-logo-on-dark.svg';
+import logo from './img/logo.svg';
+import loading from './img/loading-icon.png';
 
 class App extends Component {
   constructor() {
@@ -16,14 +17,27 @@ class App extends Component {
       events: [],
       locations: [],
       eventNumber: 32,
-      currentLocation: 'all'
+      currentLocation: 'all',
+      loadingEvents: true
       // tokenCheck: false
     }
   }
  
+  loadingEvents = () => {
+    if (this.state.events.length < 1) {
+      this.setState({
+        loadingEvents: true
+      })
+    } else {
+      this.setState({
+        loadingEvents: false
+      })
+    }
+  }
 
   componentDidMount() {
     this.mounted = true;
+    this.loadingEvents();
     getEvents().then((events) => {
       const { eventNumber } = this.state;
       if (this.mounted) {
@@ -34,6 +48,8 @@ class App extends Component {
         })
       }
     });
+
+    
 
     // const accessToken = localStorage.getItem('access_token');
     // const validToken = accessToken !== null ? await checkToken(accessToken) : false;
@@ -84,15 +100,18 @@ class App extends Component {
   }
 
   render() {
-    const { events, locations, eventNumber } = this.state;
+    const { events, locations, eventNumber, loadingEvents } = this.state;
     return (
       <div className="App">
         <div className="app__navigation-bar">
-            <h1 className="logo_text"><span style={{color: '#E8D190'}}>MEET</span> UP</h1>
-            <CitySearch locations={locations} updateEvents={this.updateEvents}/>
-            <NumberOfEvents eventNumber={eventNumber} updateEvents={this.updateEvents} />
+            <div className="logo__container">
+              <img className="logo" src={logo} alt="meet up logo"/>
+            </div>
+            <div className="nav-inputs__container">
+                <CitySearch locations={locations} updateEvents={this.updateEvents}/>
+                <NumberOfEvents eventNumber={eventNumber} updateEvents={this.updateEvents} />
+            </div>
           </div>
-          
         <EventList events={events}/>
       </div>
     )

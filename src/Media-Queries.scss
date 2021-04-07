@@ -4,11 +4,28 @@
         padding: 15px 70px;
     }
 
+    .event-list__title {
+        margin-left: 70px;
+      }
+
+    .event-list {
+        padding: 8px 70px 48px;
+    }
+
 }
 
 @media only screen and (max-width: 768px) {
     .app__navigation-bar {
         padding: 15px 40px;
+
+    }
+
+    .event-list__title {
+        margin-left: 40px;
+      }
+
+    .event-list {
+        padding: 8px 40px 48px;
     }
 
 
@@ -20,13 +37,20 @@
         padding: 15px 20px;
         flex-direction: column;
 
-        .app__logo {
-            margin-bottom: 16px;
-        }
+        .logo__container {      
+            .logo {
+              margin: 0;
+            }
+          }
+
+        .nav-inputs__container {
+            width: 100%;
+          }
     }
 
     .city-search__container {
-        width: 100%;
+        width: 80%;
+        float: left;
         
         .city-search__input {
             margin-bottom: 0;
@@ -34,11 +58,13 @@
     }
 
     
+    .event-list__title {
+        margin-top: 140px;
+        margin-left: 20px;
+    }
 
     .event-list {
-        width: 90%;
-        padding: 0;
-        margin-top: 180px;
+       padding: 8px 20px 48px;
     }
 
     .event-item__container {

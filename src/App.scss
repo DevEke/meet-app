@@ -30,17 +30,33 @@ body {
   align-items: center;
 }
 
+@keyframes shimmer2 {
+  0% {
+    transform: translateY(40px)
+  }
+  // 50% {
+  //   opacity: .5
+  // }
+  100% {
+    transform: translateY(0px)
+  }
+}
+
 .alert-container {
   position: fixed;
   box-sizing: border-box;
   display: flex;
   align-items: center;
+  color: $secondary-color;
   z-index: 9999;
   width: 100vw;
   left: 0;
   bottom: 0;
   padding: 8px 16px;
   font-size: 12px;
+  animation-name: shimmer2;
+  animation-duration: .3s;
+  animation-timing-function: ease-out;
 
   img {
     margin-right: 8px;
@@ -53,6 +69,7 @@ body {
 
   .alert_close {
     margin-left: auto;
+    margin-right: 0;
     font-family: 'Jost', sans-serif;
     text-transform: uppercase;
     border: none;
@@ -105,6 +122,54 @@ body {
   }
 }
 
+// LOADING ============================
+@keyframes loading {
+  from { transform: rotate(0) }
+  to { transform: rotate(360deg) }
+}
+
+@keyframes shimmer {
+  0% { opacity: .5 }
+  50% { opacity: 1 }
+  100% { opacity: .5 }
+}
+
+.loading__container {
+  position: absolute;
+  margin-top: 180px;
+  z-index: 100;
+  display: flex;
+  flex-direction: column ;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0;
+  background-color: #333;
+  animation-name: shimmer;
+  animation-iteration-count: infinite;
+  animation-duration: 1s;
+  animation-timing-function: ease-in-out;
+
+  .loading-icon {
+    height: 24px;
+    transform-origin: center;
+    animation-name: loading;
+    animation-iteration-count: infinite;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+  }
+
+  
+
+  h1 {
+    color: $secondary-color;
+    font-size: 12px;
+    font-weight: 400;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transform: rotate(0)
+  }
+}
+
 // NAVIGATION =============================
 
 .app__navigation-bar {
@@ -119,9 +184,23 @@ body {
   position: fixed;
   z-index: 25;
 
-  .app__logo {
-    height: 24px;
+  .logo__container {
+    display: flex;
+    align-items: center;
+
+    .logo {
+      height: 48px;
+      margin-right: 32px;
+    }
   }
+
+  .nav-inputs__container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+  }
+
   h1 {
     font-size: 12px;
     font-weight: 400;
@@ -133,7 +212,8 @@ body {
 
 .city-search__container {
   position: relative;
-  width: 50%;
+  width: 100%;
+  margin-right: 8px;
 
   .search_icon {
     position: absolute;
@@ -181,7 +261,7 @@ body {
     z-index: 50;
     width: 100%;
     top:-16px;
-
+  
     .city-suggestion {
       margin: 0;
       padding: 8px 16px;
@@ -194,6 +274,10 @@ body {
       &:hover {
         color: $link-color;
       }
+    }
+
+    .last {
+      padding-bottom: 16px;
     }
   }
 }
@@ -233,19 +317,29 @@ body {
 
 
 // EVENTLIST ==============================
-
+.event-list__title {
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: $secondary-color;
+  font-weight: 400;
+  margin-top: 100px;
+  margin-left: 165px;
+  margin-right: auto;
+}
 .event-list {
   list-style-type: none;
-  width: 70%;
-  margin-top: 80px;
+  margin: 0;
+  width: 100%;
   box-sizing: border-box;
+  padding: 8px 165px 48px;
 }
 
 .event-item__container {
   background-color: #222;
   color: $secondary-color;
   padding: 20px 24px;
-  margin: 5px;
+  margin-bottom: 8px;
   transition: background-color 0.3s;
   position: relative;
   height: auto;
@@ -271,6 +365,10 @@ body {
 
         h1, p {
           margin: 0;
+        }
+
+        h1 {
+          font-weight: 500;
         }
 
         p {
@@ -310,6 +408,11 @@ body {
       letter-spacing: 1.5px;
       text-decoration: none;
 
+      &:hover,
+      &:focus {
+        text-decoration: underline;
+      }
+
       &:visited {
         color: #6F6447;
       }
@@ -333,6 +436,8 @@ body {
     align-items: center;
     right: 20px;
     bottom: 24px;
+    cursor: pointer;
+
 
     .event-item__details-button {
       box-sizing: border-box;
@@ -341,7 +446,7 @@ body {
       border: none;
       cursor: pointer;
       background-color: transparent;
-      color: $secondary-color;
+      color: $link-color;
       font-weight: 700;
       text-transform: uppercase;
       transition: color 0.3s;

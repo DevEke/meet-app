@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import info from './img/info-icon.svg';
 import alert from './img/alert-icon.svg';
+import connection from './img/connection-icon.svg';
+import close from './img/close-icon.svg';
 
 class Alert extends Component {
     constructor(props) {
@@ -20,7 +22,7 @@ class Alert extends Component {
             <div style={this.getStyle()} className="alert-container">
                 <img src={this.source} alt="alert icon"/>
                 <p>{this.props.text}</p>
-                <button onClick={this.props.close} className="alert_close">Close</button>
+                <img onClick={this.props.close} src={close} className="alert_close" alt="close icon" />
             </div>
         )
     }
@@ -37,8 +39,8 @@ class InfoAlert extends Alert {
 class WarningAlert extends Alert {
     constructor(props) {
         super(props);
-        this.color = 'orange';
-        this.source = alert
+        this.color = '#C08326';
+        this.source = connection
     }
 }
 

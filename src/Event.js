@@ -49,12 +49,10 @@ class Event extends Component {
                     <p>{event.description}</p>
                     <a href={event.htmlLink} target="_blank" rel="noreferrer">See details on Google Calender</a>
                 </div> : null}
-                <div className="more-less__button">
+                <div className="more-less__button" onClick={this.handleExpandEvent}>
                     <img src={isExpanded ? up : down} alt="caret"/>
-                    <button 
-                        className="event-item__details-button" 
-                        onClick={this.handleExpandEvent}>
-                            {isExpanded ? "Less" : "More"}
+                    <button className="event-item__details-button">
+                        {isExpanded ? "Less" : "More"}
                     </button>
                 </div>
             </div>

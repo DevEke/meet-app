@@ -54,6 +54,20 @@ export const getEvents = async () => {
         return mockData;
     }
 
+    if (!navigator.onLine) {
+        const data = localStorage.getItem("lastEvents");
+        const parsedData = JSON.parse(data).events;
+        NProgress.done();
+        return parsedData;
+    }
+
+    if (!navigator.onLine) {
+        const data = localStorage.getItem("lastEvents");
+        const parsedLocations = extractLocations(JSON.parse(data).events);
+        NProgress.done();
+        return parsedLocations;
+    }
+
     const token = await getAccessToken();
 
     if (token) {
