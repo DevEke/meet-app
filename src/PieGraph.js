@@ -27,7 +27,7 @@ class PieGraph extends PureComponent {
     render() {
         const { data } = this.props;
         return (
-            <ResponsiveContainer width="50%" height={400}>
+            <ResponsiveContainer width="100%" height="100%">
                 <PieChart width={400} height={400}>
                     <Pie
                         data={data}
