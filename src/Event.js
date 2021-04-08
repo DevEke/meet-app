@@ -3,7 +3,6 @@ import location from './img/location-icon.svg';
 import calendar from './img/calendar-icon.svg';
 import up from './img/up-icon.svg';
 import down from './img/down-icon.svg';
-import info from './img/info-icon.svg';
 
 class Event extends Component {
 

@@ -48,7 +48,6 @@ class CitySearch extends Component {
 
     render() {
         const { query, suggestions, showSuggestions } = this.state;
-        const { locations, updateEvents } = this.props;
         return (
             <div className="city-search__container">
                 { this.state.infoText 
