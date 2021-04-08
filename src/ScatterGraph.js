@@ -5,19 +5,21 @@ class ScatterGraph extends PureComponent {
     render() {
         const { data } = this.props;
         return (
-            <ResponsiveContainer  width="100%" height={300}>
-                <ScatterChart  height={300}
+            <ResponsiveContainer  width="100%" height={400}>
+                <ScatterChart  height={400}
                     margin={{
                     top: 20,
                     right: 20,
                     bottom: 20,
-                    left: 20
+                    left: -20
                     }}>
-                    <CartesianGrid/>
+                    <CartesianGrid
+                     stroke="#F6F6F6"
+                     opacity={.5}/>
                     <XAxis type="category" dataKey="city" name="city" />
-                    <YAxis type="number" dataKey="events" name="number of events" />
+                    <YAxis allowDecimals={false} type="number" dataKey="number" name="number of events" />
                     <Tooltip cursor={{ strokeDasharray: '3 3'}} />
-                    <Scatter data={data} fill="#8884d8" />
+                    <Scatter data={data} fill="#E8D190" />
                 </ScatterChart>
             </ResponsiveContainer>
         )

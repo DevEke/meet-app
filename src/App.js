@@ -17,9 +17,7 @@ class App extends Component {
       events: [],
       locations: [],
       eventNumber: 32,
-      currentLocation: 'all',
-      loadingEvents: true
-      // tokenCheck: false
+      currentLocation: 'all'
     }
   }
  
