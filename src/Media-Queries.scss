@@ -26,6 +26,11 @@
 
     .data-visualization__container {
         padding: 20px 40px;
+        height: 700px;
+
+        .charts__container {
+            grid-template-columns: 1fr;
+        }
     }
     .event-number__container {
         .custom-spinners {

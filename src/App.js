@@ -34,10 +34,10 @@ class App extends Component {
   }
 
   getPieData = () => {
-    const programs = ['React', 'Javascript', 'Node', 'jQuery', 'AngularJS'];
+    const programs = ['React', 'JavaScript', 'Node', 'jQuery', 'AngularJS'];
     const { events } = this.state;
     const data = programs.map((program) => {
-      const value = events.filter((event) => event.summary.split(' ').includes(program)).length;
+      const value = events.filter((event) => event.summary.includes(program)).length;
       return {name: program, value}
     });
     return data;

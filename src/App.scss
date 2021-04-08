@@ -36,9 +36,6 @@ body {
   0% {
     transform: translateY(40px)
   }
-  // 50% {
-  //   opacity: .5
-  // }
   100% {
     transform: translateY(0px)
   }
@@ -49,8 +46,8 @@ body {
   padding: 20px 165px;
   width: 100%;
   box-sizing: border-box;
-  margin-top: 70px;
-  height: 400px;
+  margin-top: 80px;
+  height: 500px;
 
   h1 {
     font-size: 12px;
@@ -61,8 +58,10 @@ body {
   }
 
   .charts__container {
+    margin-top: 20px;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    width: 100%;
   }
 }
 

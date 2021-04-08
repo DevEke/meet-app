@@ -5,8 +5,8 @@ class ScatterGraph extends PureComponent {
     render() {
         const { data } = this.props;
         return (
-            <ResponsiveContainer  width="100%" height="100%">
-                <ScatterChart
+            <ResponsiveContainer  width="100%" height={300}>
+                <ScatterChart  height={300}
                     margin={{
                     top: 20,
                     right: 20,
