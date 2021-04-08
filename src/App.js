@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import EventList from './EventList';
 import CitySearch from './CitySearch';
 import NumberOfEvents from './NumberOfEvents';
-import { WarningAlert } from './Alert';
 import './App.scss';
 import './Media-Queries.scss';
-import { getEvents, extractLocations, checkToken } from './api';
+import { getEvents, extractLocations } from './api';
 import logo from './img/logo.svg';
-import loading from './img/loading-icon.png';
+import PieGraph from './PieGraph';
+import ScatterGraph from './ScatterGraph';
 
 class App extends Component {
   constructor() {
@@ -23,21 +23,28 @@ class App extends Component {
     }
   }
  
-  loadingEvents = () => {
-    if (this.state.events.length < 1) {
-      this.setState({
-        loadingEvents: true
-      })
-    } else {
-      this.setState({
-        loadingEvents: false
-      })
-    }
+  getScatterData = () => {
+    const { locations, events } = this.state;
+    const data = locations.map((location) => {
+      const number = events.filter((event) => event.location === location).length;
+      const city = location.split(',').shift();
+      return { city, number };
+    })
+    return data;
+  }
+
+  getPieData = () => {
+    const programs = ['React', 'Javascript', 'Node', 'jQuery', 'AngularJS'];
+    const { events } = this.state;
+    const data = programs.map((program) => {
+      const value = events.filter((event) => event.summary.split(' ').includes(program)).length;
+      return {name: program, value}
+    });
+    return data;
   }
 
   componentDidMount() {
     this.mounted = true;
-    this.loadingEvents();
     getEvents().then((events) => {
       const { eventNumber } = this.state;
       if (this.mounted) {
@@ -48,25 +55,9 @@ class App extends Component {
         })
       }
     });
-
-    
-
-    // const accessToken = localStorage.getItem('access_token');
-    // const validToken = accessToken !== null ? await checkToken(accessToken) : false;
-    // this.setState({
-    //   tokenCheck: validToken
-    // });
-    // if ( validToken === true ) {
-    //   this.updateEvents();
-    // }
-    // const searchParams = new URLSearchParams(window.location.search);
-    // const code = searchParams.get('code');
-    // this.mounted = true;
-    // if ( code && this.mounted === true && validToken === false) {
-    //   this.setState({ tokenCheck: true });
-    //   this.updateEvents();
-    // }
   }
+
+  
 
   updateEvents = (location, eventCount) => {
     const { currentLocation, eventNumber } = this.state;
@@ -100,7 +91,7 @@ class App extends Component {
   }
 
   render() {
-    const { events, locations, eventNumber, loadingEvents } = this.state;
+    const { events, locations, eventNumber } = this.state;
     return (
       <div className="App">
         <div className="app__navigation-bar">
@@ -111,7 +102,16 @@ class App extends Component {
                 <CitySearch locations={locations} updateEvents={this.updateEvents}/>
                 <NumberOfEvents eventNumber={eventNumber} updateEvents={this.updateEvents} />
             </div>
+        </div>
+        <div className="data-visualization__container">
+          <h1>Events in each city</h1>
+          <div className="charts__container">
+            <PieGraph data={this.getPieData()} />
+            <ScatterGraph data={this.getScatterData()} />
           </div>
+        </div>
+        
+        
         <EventList events={events}/>
       </div>
     )
