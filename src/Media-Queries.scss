@@ -19,6 +19,11 @@
 }
 
 @media only screen and (max-width: 768px) {
+
+    .App {
+        height: calc(100vh + 900px)
+    }
+    
     .app__navigation-bar {
         padding: 15px 40px;
 

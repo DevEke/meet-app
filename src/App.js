@@ -102,7 +102,7 @@ class App extends Component {
             </div>
         </div>
         <div className="data-visualization__container">
-          <h1>Events in each city</h1>
+          <h1>Data Visualization</h1>
           <div className="charts__container">
             <PieGraph data={this.getPieData()} />
             <ScatterGraph data={this.getScatterData()} />

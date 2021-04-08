@@ -18,8 +18,25 @@ class ScatterGraph extends PureComponent {
                      opacity={.5}/>
                     <XAxis type="category" dataKey="city" name="city" />
                     <YAxis allowDecimals={false} type="number" dataKey="number" name="number of events" />
-                    <Tooltip cursor={{ strokeDasharray: '3 3'}} />
-                    <Scatter data={data} fill="#E8D190" />
+                    <Tooltip 
+                        cursor={{ strokeDasharray: '3 3'}}
+                        itemStyle={{
+                            listStyleType: "none",
+                            backgroundColor: "#181818",
+                            color: "#F6F6F6",
+                            fontWeight: "400",
+                            textTransform: "uppercase",
+                            letterSpacing: "1.5px",
+                            fontSize: "12px"
+                        }}
+                        wrapperStyle={{
+                            backgroundColor: "#181818"
+                        }}
+                        contentStyle={{
+                            backgroundColor: "#181818",
+                            border: "none"
+                        }} />
+                    <Scatter data={data} fill="#E8D190" cursor="pointer"/>
                 </ScatterChart>
             </ResponsiveContainer>
         )
