@@ -19,8 +19,8 @@ class PieGraph extends PureComponent {
                         labelLine={false}
                         paddingAngle={8}
                         label={({name, percent}) => `${name} ${(percent * 100).toFixed(0)}%`}
-                        innerRadius={80}
-                        outerRadius={100}
+                        innerRadius={30}
+                        outerRadius={60}
                         fill="red"
                         dataKey="value"
                         stroke="none"
